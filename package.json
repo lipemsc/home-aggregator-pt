@@ -1,0 +1,28 @@
+{
+  "name": "home-aggregator-pt",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lipemsc/home-aggregator-pt.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lipemsc/home-aggregator-pt/issues"
+  },
+  "homepage": "https://github.com/lipemsc/home-aggregator-pt#readme",
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "jsdom": "^25.0.1"
+  }
+}
