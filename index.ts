@@ -5,6 +5,27 @@ import process from 'process';
 import axios, { Axios, AxiosHeaders } from 'axios';
 import parse from './parsers/idealista';
 import Idealista from './parsers/idealista';
+import { URL } from 'url';
+import Supercasa from './parsers/supercasa';
+import Parser from './parsers/abstract';
+
+
+
+const selectWebsite = (urlStr: string, html: string) => {
+    let hostname = new URL(urlStr).hostname
+    console.log(hostname);
+    
+    switch (new URL(urlStr).hostname) {
+        case 'idealista.pt':
+        case 'www.idealista.pt':
+            return new Idealista(html);
+        case 'supercasa.pt':
+        case 'www.supercasa.pt':
+            return new Supercasa(html);
+        default:
+            throw new Error('Website not supported');
+    }
+}
 
 
 // get the url from the command line
@@ -38,8 +59,10 @@ axios.get(url, {
         "user-agent":                   'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
     }})
   .then(response => {
-    const idealista = new Idealista(response.data);
-    idealista.parse();
+
+    let websiteParser: Parser = selectWebsite(url, response.data);
+    websiteParser.parse();
+    console.log(websiteParser.data);
   })
   .catch(error => {
     console.log(error);
