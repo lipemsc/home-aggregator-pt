@@ -7,3 +7,5 @@ interface Listing {
     rooms?: number;
     size?: number;
 }
+
+export default Listing;
